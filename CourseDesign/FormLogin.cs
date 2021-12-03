@@ -19,6 +19,7 @@ namespace CourseDesign
         string userName;
         IDataReader reader;
         bool success = false;
+        public static string userPhone;
         public FormLogin()
         {
             InitializeComponent();
@@ -58,6 +59,7 @@ namespace CourseDesign
                 {
                     success = true;
                     userName = reader.GetString(0);
+                    userPhone = phone;
                     Close();
                 }
 

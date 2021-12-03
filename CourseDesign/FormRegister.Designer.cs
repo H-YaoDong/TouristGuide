@@ -40,7 +40,9 @@ namespace CourseDesign
             this.txtName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
+            this.btnChoseAvatar = new System.Windows.Forms.Button();
+            this.avatar = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.avatar)).BeginInit();
             this.SuspendLayout();
             // 
             // linkLogin
@@ -58,7 +60,7 @@ namespace CourseDesign
             // btnRegist
             // 
             this.btnRegist.Location = new System.Drawing.Point(113, 224);
-            this.btnRegist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRegist.Margin = new System.Windows.Forms.Padding(2);
             this.btnRegist.Name = "btnRegist";
             this.btnRegist.Size = new System.Drawing.Size(66, 38);
             this.btnRegist.TabIndex = 5;
@@ -69,7 +71,7 @@ namespace CourseDesign
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(199, 131);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(188, 21);
@@ -89,7 +91,7 @@ namespace CourseDesign
             // txtCode
             // 
             this.txtCode.Location = new System.Drawing.Point(199, 93);
-            this.txtCode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCode.Margin = new System.Windows.Forms.Padding(2);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(188, 21);
             this.txtCode.TabIndex = 2;
@@ -108,7 +110,7 @@ namespace CourseDesign
             // txtRePassword
             // 
             this.txtRePassword.Location = new System.Drawing.Point(199, 166);
-            this.txtRePassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtRePassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtRePassword.Name = "txtRePassword";
             this.txtRePassword.PasswordChar = '*';
             this.txtRePassword.Size = new System.Drawing.Size(188, 21);
@@ -128,7 +130,7 @@ namespace CourseDesign
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(199, 58);
-            this.txtName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtName.Margin = new System.Windows.Forms.Padding(2);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(188, 21);
             this.txtName.TabIndex = 1;
@@ -147,7 +149,7 @@ namespace CourseDesign
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(224, 224);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(66, 38);
             this.btnCancel.TabIndex = 15;
@@ -155,23 +157,32 @@ namespace CourseDesign
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // label5
+            // btnChoseAvatar
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.Location = new System.Drawing.Point(93, 24);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 14);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "选择头像";
+            this.btnChoseAvatar.Location = new System.Drawing.Point(96, 21);
+            this.btnChoseAvatar.Name = "btnChoseAvatar";
+            this.btnChoseAvatar.Size = new System.Drawing.Size(75, 23);
+            this.btnChoseAvatar.TabIndex = 16;
+            this.btnChoseAvatar.Text = "选择头像";
+            this.btnChoseAvatar.UseVisualStyleBackColor = true;
+            this.btnChoseAvatar.Click += new System.EventHandler(this.btnChoseAvatar_Click);
+            // 
+            // avatar
+            // 
+            this.avatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.avatar.Location = new System.Drawing.Point(199, 3);
+            this.avatar.Name = "avatar";
+            this.avatar.Size = new System.Drawing.Size(50, 50);
+            this.avatar.TabIndex = 17;
+            this.avatar.TabStop = false;
             // 
             // FormRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(470, 282);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.avatar);
+            this.Controls.Add(this.btnChoseAvatar);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.label4);
@@ -184,12 +195,13 @@ namespace CourseDesign
             this.Controls.Add(this.txtCode);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormRegister";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormRegister";
+            ((System.ComponentModel.ISupportInitialize)(this.avatar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,6 +220,7 @@ namespace CourseDesign
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnChoseAvatar;
+        private System.Windows.Forms.PictureBox avatar;
     }
 }

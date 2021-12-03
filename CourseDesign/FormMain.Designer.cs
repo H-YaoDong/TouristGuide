@@ -41,6 +41,7 @@ namespace CourseDesign
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.pbAvatar = new System.Windows.Forms.PictureBox();
             this.pbAvatarBg = new System.Windows.Forms.PictureBox();
+            this.lbUserName = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAvatar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAvatarBg)).BeginInit();
@@ -133,9 +134,8 @@ namespace CourseDesign
             // pbAvatar
             // 
             this.pbAvatar.BackColor = System.Drawing.Color.Transparent;
-            this.pbAvatar.BackgroundImage = global::CourseDesign.Properties.Resources.pic1;
             this.pbAvatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pbAvatar.Location = new System.Drawing.Point(12, 30);
+            this.pbAvatar.Location = new System.Drawing.Point(15, 30);
             this.pbAvatar.Name = "pbAvatar";
             this.pbAvatar.Size = new System.Drawing.Size(120, 120);
             this.pbAvatar.TabIndex = 4;
@@ -144,18 +144,28 @@ namespace CourseDesign
             // pbAvatarBg
             // 
             this.pbAvatarBg.BackColor = System.Drawing.Color.Transparent;
-            this.pbAvatarBg.Location = new System.Drawing.Point(4, 21);
+            this.pbAvatarBg.Location = new System.Drawing.Point(7, 21);
             this.pbAvatarBg.Name = "pbAvatarBg";
             this.pbAvatarBg.Size = new System.Drawing.Size(136, 138);
             this.pbAvatarBg.TabIndex = 5;
             this.pbAvatarBg.TabStop = false;
             this.pbAvatarBg.Paint += new System.Windows.Forms.PaintEventHandler(this.pbAvatarBg_Paint);
             // 
+            // lbUserName
+            // 
+            this.lbUserName.AutoSize = true;
+            this.lbUserName.Location = new System.Drawing.Point(41, 180);
+            this.lbUserName.Name = "lbUserName";
+            this.lbUserName.Size = new System.Drawing.Size(41, 12);
+            this.lbUserName.TabIndex = 7;
+            this.lbUserName.Text = "用户名";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.Controls.Add(this.lbUserName);
             this.Controls.Add(this.pbAvatar);
             this.Controls.Add(this.pbAvatarBg);
             this.Controls.Add(this.toolStrip1);
@@ -186,5 +196,6 @@ namespace CourseDesign
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.PictureBox pbAvatar;
         private System.Windows.Forms.PictureBox pbAvatarBg;
+        private System.Windows.Forms.Label lbUserName;
     }
 }
