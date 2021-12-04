@@ -84,6 +84,7 @@ namespace CourseDesign
                         txtPassword.Text = "";
                         txtRePassword.Text = "";
                         avatar.BackgroundImage = null;
+                        
                     }
                 }
 

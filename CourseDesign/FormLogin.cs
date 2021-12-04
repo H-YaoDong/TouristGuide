@@ -62,7 +62,6 @@ namespace CourseDesign
                     userPhone = phone;
                     Close();
                 }
-
             }
             else
             {
@@ -76,7 +75,10 @@ namespace CourseDesign
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Close();
+            if (!success)
+            {
+                Application.Exit();
+            }
         }
     }
 }

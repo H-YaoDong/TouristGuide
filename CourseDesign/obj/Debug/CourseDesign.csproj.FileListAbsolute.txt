@@ -22,3 +22,4 @@ C:\Users\HYaoDong\Desktop\CourseDesign\CourseDesign\bin\Debug\K4os.Compression.L
 C:\Users\HYaoDong\Desktop\CourseDesign\CourseDesign\bin\Debug\K4os.Hash.xxHash.dll
 C:\Users\HYaoDong\Desktop\CourseDesign\CourseDesign\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\HYaoDong\Desktop\CourseDesign\CourseDesign\obj\Debug\CourseDesign.FormMain.resources
+C:\Users\HYaoDong\Desktop\CourseDesign\CourseDesign\obj\Debug\CourseDesign.FormInfo.resources

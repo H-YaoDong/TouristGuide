@@ -32,19 +32,21 @@ namespace CourseDesign
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.lbUserName = new System.Windows.Forms.Label();
+            this.panel = new System.Windows.Forms.Panel();
+            this.pbAvatar = new System.Windows.Forms.PictureBox();
+            this.pbAvatarBg = new System.Windows.Forms.PictureBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.mmuInfo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.pbAvatar = new System.Windows.Forms.PictureBox();
-            this.pbAvatarBg = new System.Windows.Forms.PictureBox();
-            this.lbUserName = new System.Windows.Forms.Label();
-            this.toolStrip1.SuspendLayout();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.pbAvatar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAvatarBg)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageList1
@@ -52,6 +54,43 @@ namespace CourseDesign
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "menu");
+            // 
+            // lbUserName
+            // 
+            this.lbUserName.AutoSize = true;
+            this.lbUserName.Location = new System.Drawing.Point(41, 180);
+            this.lbUserName.Name = "lbUserName";
+            this.lbUserName.Size = new System.Drawing.Size(41, 12);
+            this.lbUserName.TabIndex = 7;
+            this.lbUserName.Text = "用户名";
+            // 
+            // panel
+            // 
+            this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel.Location = new System.Drawing.Point(150, 0);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(1034, 661);
+            this.panel.TabIndex = 9;
+            // 
+            // pbAvatar
+            // 
+            this.pbAvatar.BackColor = System.Drawing.Color.Transparent;
+            this.pbAvatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbAvatar.Location = new System.Drawing.Point(15, 30);
+            this.pbAvatar.Name = "pbAvatar";
+            this.pbAvatar.Size = new System.Drawing.Size(120, 120);
+            this.pbAvatar.TabIndex = 4;
+            this.pbAvatar.TabStop = false;
+            // 
+            // pbAvatarBg
+            // 
+            this.pbAvatarBg.BackColor = System.Drawing.Color.Transparent;
+            this.pbAvatarBg.Location = new System.Drawing.Point(7, 21);
+            this.pbAvatarBg.Name = "pbAvatarBg";
+            this.pbAvatarBg.Size = new System.Drawing.Size(136, 138);
+            this.pbAvatarBg.TabIndex = 5;
+            this.pbAvatarBg.TabStop = false;
+            this.pbAvatarBg.Paint += new System.Windows.Forms.PaintEventHandler(this.pbAvatarBg_Paint);
             // 
             // toolStrip1
             // 
@@ -65,8 +104,9 @@ namespace CourseDesign
             this.toolStripSeparator2,
             this.toolStripButton3,
             this.toolStripSeparator3,
-            this.toolStripButton4,
-            this.toolStripSeparator1});
+            this.mmuInfo,
+            this.toolStripSeparator1,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
@@ -112,18 +152,19 @@ namespace CourseDesign
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
             // 
-            // toolStripButton4
+            // mmuInfo
             // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton4.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toolStripButton4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.toolStripButton4.Size = new System.Drawing.Size(149, 35);
-            this.toolStripButton4.Text = "    个人信息    >    ";
-            this.toolStripButton4.ToolTipText = "    个人信息    >    ";
+            this.mmuInfo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.mmuInfo.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.mmuInfo.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.mmuInfo.Image = ((System.Drawing.Image)(resources.GetObject("mmuInfo.Image")));
+            this.mmuInfo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.mmuInfo.Name = "mmuInfo";
+            this.mmuInfo.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.mmuInfo.Size = new System.Drawing.Size(149, 35);
+            this.mmuInfo.Text = "    个人信息    >    ";
+            this.mmuInfo.ToolTipText = "    个人信息    >    ";
+            this.mmuInfo.Click += new System.EventHandler(this.mmuInfo_Click);
             // 
             // toolStripSeparator1
             // 
@@ -131,40 +172,23 @@ namespace CourseDesign
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
-            // pbAvatar
+            // toolStripButton1
             // 
-            this.pbAvatar.BackColor = System.Drawing.Color.Transparent;
-            this.pbAvatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pbAvatar.Location = new System.Drawing.Point(15, 30);
-            this.pbAvatar.Name = "pbAvatar";
-            this.pbAvatar.Size = new System.Drawing.Size(120, 120);
-            this.pbAvatar.TabIndex = 4;
-            this.pbAvatar.TabStop = false;
-            // 
-            // pbAvatarBg
-            // 
-            this.pbAvatarBg.BackColor = System.Drawing.Color.Transparent;
-            this.pbAvatarBg.Location = new System.Drawing.Point(7, 21);
-            this.pbAvatarBg.Name = "pbAvatarBg";
-            this.pbAvatarBg.Size = new System.Drawing.Size(136, 138);
-            this.pbAvatarBg.TabIndex = 5;
-            this.pbAvatarBg.TabStop = false;
-            this.pbAvatarBg.Paint += new System.Windows.Forms.PaintEventHandler(this.pbAvatarBg_Paint);
-            // 
-            // lbUserName
-            // 
-            this.lbUserName.AutoSize = true;
-            this.lbUserName.Location = new System.Drawing.Point(41, 180);
-            this.lbUserName.Name = "lbUserName";
-            this.lbUserName.Size = new System.Drawing.Size(41, 12);
-            this.lbUserName.TabIndex = 7;
-            this.lbUserName.Text = "用户名";
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.toolStripButton1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(149, 25);
+            this.toolStripButton1.Text = " 切换用户/注销 > ";
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.Controls.Add(this.panel);
             this.Controls.Add(this.lbUserName);
             this.Controls.Add(this.pbAvatar);
             this.Controls.Add(this.pbAvatarBg);
@@ -175,10 +199,10 @@ namespace CourseDesign
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormMain";
             this.Load += new System.EventHandler(this.FormMain_Load);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAvatar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAvatarBg)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,11 +215,13 @@ namespace CourseDesign
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripButton mmuInfo;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.PictureBox pbAvatar;
         private System.Windows.Forms.PictureBox pbAvatarBg;
         private System.Windows.Forms.Label lbUserName;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.Panel panel;
     }
 }
