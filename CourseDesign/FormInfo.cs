@@ -19,6 +19,7 @@ namespace CourseDesign
         DBHelper helper = new DBHelper("mysql");
         IDataReader reader;
         string phone;
+        string id;
         string sql;
         string name;
         float amount;
@@ -26,8 +27,11 @@ namespace CourseDesign
         string avatarPath;
         string chosedPath;
         string extension;
+        DataTable table;
+        DateTime dt;
+        string curTime;
 
-        
+
         //使用自定义的事件委托
         public delegate void MyEvent(string path);
         public event MyEvent ChangeAvatar;
@@ -68,16 +72,17 @@ namespace CourseDesign
         private void FormInfo_Load(object sender, EventArgs e)
         {
 
-            //phone = ((FormMain)this.MdiParent).phone;  怎么没用啊？
-            phone = FormLogin.userPhone;
-            sql = "select name, avatarName, amount from user where phone='" + phone + "'";
+            //phone = ((FormMain)this.MdiParent).id;  怎么没用啊？
+            id = FormLogin.userID;
+            sql = "select name, phone, avatarName, amount from user where id='" + id + "'";
             reader = helper.DataRead(sql);
             //获取保存头像的路径
             avatarPath = FormRegister.avatarPath;
             if(reader!=null && reader.Read()){
                 name = reader.GetString(0);
-                avatarName = reader.GetString(1);
-                amount = reader.GetFloat(2);
+                phone = reader.GetString(1);
+                avatarName = reader.GetString(2);
+                amount = reader.GetFloat(3);
                 //好像在同一个类中用完一次heler就要将其关闭
                 helper.DisConnection();
 
@@ -85,6 +90,10 @@ namespace CourseDesign
                 txtName.Text = name;
                 txtPhone.Text = phone;
                 txtAmount.Text = amount+"";
+
+                sql = "select d.name, d.phone, d.date, d.addMoney from user u, deposit_record d where u.id = d.id";
+                table = helper.FillTable(sql);
+                grdRecord.DataSource = table;
             }
             else
             {
@@ -124,12 +133,14 @@ namespace CourseDesign
                 avatarName = DateTime.Now.ToFileTime().ToString() + extension;
                 File.Copy(chosedPath, avatarPath + "\\" + avatarName);
             }
-            sql = "update user set name='"+txtName.Text.Trim()+"', phone='" + txtPhone.Text.Trim() + "', avatarName='" + avatarName + "' where phone='" + phone + "'";
+            sql = "update user set name='"+txtName.Text.Trim()+"', phone='" + txtPhone.Text.Trim() + "', avatarName='" + avatarName + "' where id='" + id + "'";
             long res = helper.Update(sql);
 
             if (res > 0)
             {
                 MessageBox.Show("信息修改成功！");
+                //phone存储更新后的手机号
+                phone = txtPhone.Text.Trim();
                 //pbAvatar.BackgroundImageChanged += new EventHandler(pbAvatar_BackgroundImageChanged);
                 //点击保存后才能修改用户头像，妈的想了我好久
                 btnSave.Click += new EventHandler(pbAvatarBackgroundImageChanged);
@@ -145,6 +156,35 @@ namespace CourseDesign
         {
             //图片被修改后就抛出该事件
             ChangeAvatar.Invoke(avatarName);
+        }
+
+        private void btnDeposit_Click(object sender, EventArgs e)
+        {
+            float addMoney = float.Parse(txtDeposit.Text.Trim());
+            sql = "update user set amount = " + (amount + addMoney) + " where id='" + id + "'";
+            long res = helper.Update(sql);
+            helper.DisConnection();
+            MessageBox.Show(sql);
+            if (res > 0)
+            {
+                amount += addMoney;
+                MessageBox.Show("充值成功！当前余额为："+amount);
+                txtAmount.Text = amount + "";
+                txtDeposit.Text = "充值金额";
+                txtDeposit.ForeColor = Color.LightGray;
+
+                dt = System.DateTime.Now;
+                curTime = dt.ToString("yyyy-MM-dd-HH:mm");
+
+                sql = "insert into deposit_record values('"+id+"', '"+name+"', '"+phone+"', '"+curTime+"', '"+addMoney+"')";
+                MessageBox.Show(sql);
+                res = helper.Update(sql);
+                if (res > 0)
+                {
+                    //加入行的值的顺序必须和一开始的一样
+                    ((DataTable)grdRecord.DataSource).Rows.Add(name, phone, curTime, addMoney);
+                }
+            }
         }
     }
 }
