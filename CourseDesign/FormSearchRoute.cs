@@ -87,7 +87,9 @@ namespace CourseDesign
         private void btnSearch_Click(object sender, EventArgs e)
         {
             double distacne = countDistance(startLine, startStation, endLine, endStation);
+            int price = (int)distacne * 2;
             textBox1.Text = "总路程：" + distacne;
+            labelPrice.Text = price+"";
         }
 
         private void countAllDistance()
@@ -126,6 +128,8 @@ namespace CourseDesign
             allDis[7, 40] = allDis[40, 7] = 0;
             //八一广场
             allDis[12, 46] = allDis[46, 12] = 0;
+            //八一馆
+            allDis[65, 11] = allDis[11, 65] = 0;
 
             for(int k=0; k<len; k++)
             {
@@ -137,19 +141,6 @@ namespace CourseDesign
                     }
                 }
             }
-
-            string s = "";
-            for(int i=0; i < len; i++)
-            {
-                for(int j=0; j < len; j++)
-                {
-                    s += allDis[i, j] + " ";
-                }
-                s += "\n";
-            }
-            richTextBox1.Text = s;
-
-
         }
 
         private double countDistance(int startLine, int startStation, int endLine, int endStation)
@@ -157,6 +148,7 @@ namespace CourseDesign
             double distance = 0;
             if (startLine == 1) startStation += 24;
             if (startLine == 2) startStation += 52;
+
             if (endLine == 1) endStation += 24;
             if (endLine == 2) endStation += 52;
             distance = allDis[startStation, endStation];
