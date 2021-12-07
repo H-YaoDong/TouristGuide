@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace CourseDesign
 {
@@ -16,14 +17,15 @@ namespace CourseDesign
         public FormIndex()
         {
             InitializeComponent();
+            
         }
         public static FormIndex getSingle()
         {
             if(FrmIndex==null || FrmIndex.IsDisposed)
-            {
                 FrmIndex = new FormIndex();
-            }
             return FrmIndex;
         }
+
+
     }
 }
