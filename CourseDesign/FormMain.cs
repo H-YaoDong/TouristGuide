@@ -72,6 +72,16 @@ namespace CourseDesign
             pbAvatarBg.Invalidate();
             square2round(pbAvatarBg);
             square2round(pbAvatar);
+            
+
+            //加载首页
+            frmIndex = FormIndex.getSingle();
+            frmIndex.MdiParent = this;
+            frmIndex.TopLevel = false;
+            frmIndex.Dock = DockStyle.Fill;
+            panel.Controls.Add(frmIndex);
+            frmIndex.Show();
+
         }
 
         //渐变用户头像背景
@@ -106,10 +116,6 @@ namespace CourseDesign
 
         private void mmuIndex_Click(object sender, EventArgs e)
         {
-            frmIndex = FormIndex.getSingle();
-            frmIndex.MdiParent = this;
-            frmIndex.TopLevel = false;
-            frmIndex.Dock = DockStyle.Fill;
             frmIndex.Show();
             panel.Controls.Clear();
             panel.Controls.Add(frmIndex);
