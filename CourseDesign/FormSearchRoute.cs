@@ -86,7 +86,7 @@ namespace CourseDesign
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            double distacne = countDistance(startLine, startStation, endLine, endStation);
+            double distacne = dijstra(startLine, startStation, endLine, endStation);
             int price = (int)distacne * 2;
             textBox1.Text = "总路程：" + distacne;
             labelPrice.Text = price+"";
@@ -131,6 +131,8 @@ namespace CourseDesign
             //八一馆
             allDis[65, 11] = allDis[11, 65] = 0;
 
+
+            /*
             for(int k=0; k<len; k++)
             {
                 for(int i=0;i<len; i++)
@@ -141,6 +143,82 @@ namespace CourseDesign
                     }
                 }
             }
+            */
+        }
+
+
+        private double dijstra(int startLine, int startStation, int endLine, int endStation)
+        {
+            double distance = 0;
+            if (startLine == 1) startStation += 24;
+            if (startLine == 2) startStation += 52;
+
+            if (endLine == 1) endStation += 24;
+            if (endLine == 2) endStation += 52;
+
+            bool[] visited = new bool[len];
+            int[] path = new int[len];
+            double[] dist = new double[len];
+            
+            for(int i=0; i<len; i++)
+            {
+                visited[i] = false;
+                dist[i] = 99999;
+                path[i] = -1;
+            }
+            for(int i=0; i<len; i++)
+            {
+                if (dist[i] > allDis[startStation, i])
+                {
+                    dist[i] = allDis[startStation, i];
+                    path[i] = startStation;
+                }
+            }
+            dist[startStation] = 0;
+            visited[startStation] = true;
+            for(int i=0; i<len; i++)
+            {
+                double minDis = 99999;
+                int minV = startStation;
+                for(int j=0; j<len; j++)
+                {
+                    if(!visited[j] && dist[j] < minDis)
+                    {
+                        minDis = dist[j];
+                        minV = j;
+                    }
+                }
+                for(int j = 0; j<len; j++)
+                {
+                    if (!visited[j])
+                    {
+                        if (dist[j] > dist[minV] + allDis[minV, j])
+                        {
+                            dist[j] = dist[minV] + allDis[minV, j];
+                            path[j] = minV;
+                        }
+                    }
+                }
+                visited[minV] = true;
+            }
+
+
+            string s = "";
+            for (int i = 0; i < len; i++)
+                s += path[i] + " ";
+            richTextBox1.Text = s;
+
+            s = "";
+            while (path[endStation] != 0)
+            {
+                s += path[endStation] + " ";
+                endStation = path[endStation];
+            }
+            richTextBox2.Text = s;
+
+            distance = dist[endStation];
+
+            return distance;
         }
 
         private double countDistance(int startLine, int startStation, int endLine, int endStation)
@@ -158,6 +236,17 @@ namespace CourseDesign
         private void FormSearchRoute_Load(object sender, EventArgs e)
         {
             countAllDistance();
+            string s = "";
+            for(int i=0; i<len; i++)
+            {
+                for(int j=0; j<len; j++)
+                {
+                    s += allDis[i, j];
+                }
+                s += "\n";
+            }
+            richTextBox1.Text = s;
+
         }
 
         private void cbStartStation_SelectedIndexChanged(object sender, EventArgs e)
