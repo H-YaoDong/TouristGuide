@@ -17,6 +17,7 @@ namespace CourseDesign
         FormLogin frmLogin = FormLogin.GetSingle();
         FormIndex frmIndex;
         FormSearchRoute frmSR;
+        FormDelicious frmDel;
 
         FormInfo frmInfo;
         //保存当前用户的手机号码
@@ -73,7 +74,6 @@ namespace CourseDesign
             square2round(pbAvatarBg);
             square2round(pbAvatar);
             
-
             //加载首页
             frmIndex = FormIndex.getSingle();
             frmIndex.MdiParent = this;
@@ -96,12 +96,13 @@ namespace CourseDesign
 
         private void mmuInfo_Click(object sender, EventArgs e)
         {
-            frmInfo = FormInfo.getSingle();
+            frmInfo = new FormInfo();
             frmInfo.ChangeAvatar += new FormInfo.MyEvent(changeAvatar);
             frmInfo.MdiParent = this;
             frmInfo.TopLevel = false;
             frmInfo.Dock = DockStyle.Fill;
             frmInfo.Show();
+            //有了Clear()就可以把panel之前的子窗口清空。每次就只会有一个Info窗体。
             panel.Controls.Clear();
             panel.Controls.Add(frmInfo);
         }
@@ -132,5 +133,15 @@ namespace CourseDesign
             panel.Controls.Add(frmSR);
         }
 
+        private void mmuDelicacies_Click(object sender, EventArgs e)
+        {
+            frmDel = FormDelicious.getSingle();
+            frmDel.MdiParent = this;
+            frmDel.TopLevel = false;
+            frmDel.Dock = DockStyle.Fill;
+            frmDel.Show();
+            panel.Controls.Clear();
+            panel.Controls.Add(frmDel);
+        }
     }
 }
