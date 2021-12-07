@@ -16,6 +16,7 @@ namespace CourseDesign
         private static FormMain singleMain = null; 
         FormLogin frmLogin = FormLogin.GetSingle();
         FormIndex frmIndex;
+        FormSearchRoute frmSR;
 
         FormInfo frmInfo;
         //保存当前用户的手机号码
@@ -55,7 +56,6 @@ namespace CourseDesign
         private void FormMain_Load(object sender, EventArgs e)
         {
             frmLogin.ShowDialog();
-
             //根据不同用户选择头像
             phone = FormLogin.userPhone;
             id = FormLogin.userID;
@@ -74,13 +74,13 @@ namespace CourseDesign
             square2round(pbAvatar);
         }
 
+        //渐变用户头像背景
         private void pbAvatarBg_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
             Color FColor = Color.Pink;
             Color TColor = Color.White; ;
             Brush b = new LinearGradientBrush(pbAvatarBg.ClientRectangle, FColor, TColor, LinearGradientMode.ForwardDiagonal);
-
             g.FillRectangle(b, pbAvatarBg.ClientRectangle);
         }
 
@@ -94,14 +94,14 @@ namespace CourseDesign
             frmInfo.Show();
             panel.Controls.Clear();
             panel.Controls.Add(frmInfo);
-            
         }
 
-        private void changeAvatar(string name)
+        private void changeAvatar(string name, string uname)
         {
             //当第一次进入个人信息页面时，用户的头像从无到有，就会抛出自定义的事件
             MessageBox.Show("为什么会执行这里啊？？");
             pbAvatar.BackgroundImage = Image.FromFile(FormRegister.avatarPath+"\\"+name);
+            lbUserName.Text = uname;
         }
 
         private void mmuIndex_Click(object sender, EventArgs e)
@@ -113,7 +113,18 @@ namespace CourseDesign
             frmIndex.Show();
             panel.Controls.Clear();
             panel.Controls.Add(frmIndex);
-
         }
+
+        private void mmuSearchRoute_Click(object sender, EventArgs e)
+        {
+            frmSR = FormSearchRoute.getSingle();
+            frmSR.MdiParent = this;
+            frmSR.TopLevel = false;
+            frmSR.Dock = DockStyle.Fill;
+            frmSR.Show();
+            panel.Controls.Clear();
+            panel.Controls.Add(frmSR);
+        }
+
     }
 }
