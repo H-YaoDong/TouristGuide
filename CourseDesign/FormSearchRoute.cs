@@ -32,7 +32,10 @@ namespace CourseDesign
         int endLine;
         int startStation;
         int endStation;
-        
+
+        int price;
+        string id;
+
         public FormSearchRoute()
         {
             InitializeComponent();
@@ -50,7 +53,6 @@ namespace CourseDesign
         { 
             int index = cbStartRoute.SelectedIndex;
             startLine = index;
-            MessageBox.Show(index + "");
             if (index == 0)
             {
                 cbStartStation.DataSource = list1;
@@ -69,7 +71,6 @@ namespace CourseDesign
         {
             int index = cbEndRoute.SelectedIndex;
             endLine = index;
-            MessageBox.Show(index + "");
             if (index == 0)
             {
                 cbEndStation.DataSource = list1;
@@ -87,9 +88,19 @@ namespace CourseDesign
         private void btnSearch_Click(object sender, EventArgs e)
         {
             double distacne = dijstra(startLine, startStation, endLine, endStation);
-            int price = (int)distacne * 2;
-            textBox1.Text = "总路程：" + distacne;
-            labelPrice.Text = price+"";
+            if (distacne <= 6)
+            {
+                price = 2;
+            }
+            else if(distacne <= 12)
+            {
+                price = 3;
+            }else
+            {
+                price = 3 + (int)(distacne - 12)/8;
+            }
+            txtDistance.Text =  distacne+" /km";
+            labelPrice.Text = price+" 元";
         }
 
         private void countAllDistance()
@@ -152,7 +163,6 @@ namespace CourseDesign
             double distance = 0;
             if (startLine == 1) startStation += 24;
             if (startLine == 2) startStation += 52;
-
             if (endLine == 1) endStation += 24;
             if (endLine == 2) endStation += 52;
 
@@ -201,26 +211,36 @@ namespace CourseDesign
                 }
                 visited[minV] = true;
             }
-
-
+            distance = dist[endStation];
             string s = "";
-            for (int i = 0; i < len; i++)
-                s += path[i] + " ";
-            richTextBox1.Text = s;
+            List<string> route = new List<string>();
 
-            s = "";
-            while (path[endStation] != 0)
+            while (endStation != startStation)
             {
-                s += path[endStation] + " ";
+                if (endStation < 24) route.Add(route1[endStation]);
+                else if (endStation < 52) route.Add(route2[endStation - 24]);
+                else if (endStation < 72) route.Add(route3[endStation - 52]);
+
                 endStation = path[endStation];
             }
-            richTextBox2.Text = s;
+            //加上起始站
+            if (endStation < 24) route.Add(route1[endStation]);
+            else if (endStation < 52) route.Add(route2[endStation - 24]);
+            else if (endStation < 72) route.Add(route3[endStation - 52]);
+            route.Reverse();
 
-            distance = dist[endStation];
-
+            for(int i=0;i<route.Count; i++)
+            {
+                if(i!=route.Count-1)
+                s += route[i] + " -> ";
+            }
+            s += route[route.Count-1] ;
+            rtbRoute.Text = s;
+            gbRoute.Visible = true;
             return distance;
         }
 
+        //初始化矩阵
         private double countDistance(int startLine, int startStation, int endLine, int endStation)
         {
             double distance = 0;
@@ -245,7 +265,6 @@ namespace CourseDesign
                 }
                 s += "\n";
             }
-            richTextBox1.Text = s;
 
         }
 
@@ -257,6 +276,41 @@ namespace CourseDesign
         private void cbEndStation_SelectedIndexChanged(object sender, EventArgs e)
         {
             endStation = cbEndStation.SelectedIndex;
+        }
+
+        private void btnBuy_Click(object sender, EventArgs e)
+        {
+            DialogResult dr =  MessageBox.Show("确认购买？", "提示", MessageBoxButtons.OKCancel);
+            if(dr == DialogResult.OK)
+            {
+                id = FormLogin.userID;
+                DBHelper helper = new DBHelper("mysql");
+                string sql = "select amount from user where id='" + id + "'";
+                IDataReader reader = helper.DataRead(sql);
+                float amount = 0;
+                if (reader != null && reader.Read())
+                {
+                    amount = reader.GetFloat(0);
+                }
+                helper.DisConnection();
+                if (amount >= price)
+                {
+                    sql = "update user set amount='" + (amount - price) + "' where id='" + id + "'";
+                    long res = helper.Update(sql);
+                    if (res > 0)
+                    {
+                        MessageBox.Show("购票成功！欢迎下次光临");
+                    }
+                    else
+                    {
+                        MessageBox.Show("系统出错，这是个始料未及的bug");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("余额不足请充值！");
+                }
+            }
         }
     }
 }
