@@ -8,20 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using System.Diagnostics;
 
 namespace CourseDesign
 {
     public partial class FormMain : Form
     {
-        private static FormMain singleMain = null; 
         FormLogin frmLogin = FormLogin.GetSingle();
         FormIndex frmIndex;
         FormSearchRoute frmSR;
         FormDelicious frmDel;
+        FormSystem frmSys;
 
         FormInfo frmInfo;
         //保存当前用户的手机号码
-        string phone;
         //保存用户id
         string id;
         DBHelper helper = new DBHelper("mysql");
@@ -30,20 +30,13 @@ namespace CourseDesign
         string name;
         //设置默认头像
         string avatar = "default.png";
+
+        public static bool change = false;
         public FormMain()
         {
             InitializeComponent();
         }
-        public static FormMain getSingle()
-        {
-            if(singleMain==null || singleMain.IsDisposed)
-            {
-                singleMain = new FormMain();
-            }
-            return singleMain;
-        }
 
-        //将方形图像转换成圆形图像
         private void square2round(PictureBox pb)
         {
             GraphicsPath gp = new GraphicsPath();
@@ -54,11 +47,8 @@ namespace CourseDesign
             region.Dispose();
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
+        private void MyLoad()
         {
-            frmLogin.ShowDialog();
-            //根据不同用户选择头像
-            phone = FormLogin.userPhone;
             id = FormLogin.userID;
             sql = "select name, avatarName from user where id='" + id + "'";
             reader = helper.DataRead(sql);
@@ -67,13 +57,19 @@ namespace CourseDesign
                 name = reader.GetString(0);
                 avatar = reader.GetString(1);
             }
-            pbAvatar.BackgroundImage = Image.FromFile(FormRegister.avatarPath+"\\"+avatar);
+            bool b = reader == null;
+            pbAvatar.BackgroundImage = Image.FromFile(FormRegister.avatarPath + "\\" + avatar);
             lbUserName.Text = name;
+            helper.DisConnection();
+
             //渐变+圆形头像
             pbAvatarBg.Invalidate();
             square2round(pbAvatarBg);
             square2round(pbAvatar);
-            
+
+            //不知道为啥不加这个也会有bug，缝缝补补，太难了
+            this.IsMdiContainer = true;
+
             //加载首页
             frmIndex = FormIndex.getSingle();
             frmIndex.MdiParent = this;
@@ -84,7 +80,13 @@ namespace CourseDesign
 
         }
 
-        //渐变用户头像背景
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            frmLogin.ShowDialog();
+            MyLoad();
+
+        }
+
         private void pbAvatarBg_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -142,6 +144,32 @@ namespace CourseDesign
             frmDel.Show();
             panel.Controls.Clear();
             panel.Controls.Add(frmDel);
+        }
+
+        private void mmuSystem_Click(object sender, EventArgs e)
+        {
+            frmSys = new FormSystem();
+            frmSys.CHANGE += new EventHandler(change_User);
+            frmSys.FORMCLOSED += new FormClosedEventHandler(close_Main);
+            frmSys.MdiParent = this;
+            frmSys.TopLevel = false;
+            frmSys.Dock = DockStyle.Fill;
+            frmSys.Show();
+            panel.Controls.Clear();
+            panel.Controls.Add(frmSys);
+            
+        }
+
+        private void close_Main(object sender, EventArgs e)
+        {
+            Process process = Process.GetCurrentProcess();
+            process.Close();
+            Application.Restart();
+        }
+
+        private void change_User(object sender, EventArgs e)
+        {
+            MyLoad();
         }
     }
 }
