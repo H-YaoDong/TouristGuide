@@ -19,6 +19,7 @@ namespace CourseDesign
         FormSearchRoute frmSR;
         FormDelicious frmDel;
         FormSystem frmSys;
+        FormView frmView;
 
         FormInfo frmInfo;
         //保存当前用户的手机号码
@@ -170,6 +171,17 @@ namespace CourseDesign
         private void change_User(object sender, EventArgs e)
         {
             MyLoad();
+        }
+
+        private void mmuView_Click(object sender, EventArgs e)
+        {
+            frmView = new FormView();
+            frmView.MdiParent = this;
+            frmView.TopLevel = false;
+            frmView.Dock = DockStyle.Fill;
+            frmView.Show();
+            panel.Controls.Clear();
+            panel.Controls.Add(frmView);
         }
     }
 }
