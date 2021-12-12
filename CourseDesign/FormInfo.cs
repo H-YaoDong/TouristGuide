@@ -13,7 +13,6 @@ namespace CourseDesign
 {
     public partial class FormInfo : Form
     {
-        private static FormInfo singleInfo = null;
         bool txtDepositHasText = false;
 
         DBHelper helper = new DBHelper("mysql");
@@ -31,20 +30,13 @@ namespace CourseDesign
         DateTime dt;
         string curTime;
 
-
         //使用自定义的事件委托
-        public delegate void MyEvent(string path);
+        public delegate void MyEvent(string path, string name);
         public event MyEvent ChangeAvatar;
 
         public FormInfo()
         {
             InitializeComponent();
-        }
-        public static FormInfo getSingle()
-        {
-            if (singleInfo == null || singleInfo.IsDisposed)
-                singleInfo = new FormInfo();
-            return singleInfo;
         }
 
         //给用户提供充值的提示文字
@@ -71,7 +63,6 @@ namespace CourseDesign
 
         private void FormInfo_Load(object sender, EventArgs e)
         {
-
             //phone = ((FormMain)this.MdiParent).id;  怎么没用啊？
             id = FormLogin.userID;
             sql = "select name, phone, avatarName, amount from user where id='" + id + "'";
@@ -83,7 +74,7 @@ namespace CourseDesign
                 phone = reader.GetString(1);
                 avatarName = reader.GetString(2);
                 amount = reader.GetFloat(3);
-                //好像在同一个类中用完一次heler就要将其关闭
+                //好像在同一个类中用完一次helpgrdRecorder就要将其关闭
                 helper.DisConnection();
 
                 pbAvatar.BackgroundImage = Image.FromFile(avatarPath+"\\"+avatarName);
@@ -91,16 +82,21 @@ namespace CourseDesign
                 txtPhone.Text = phone;
                 txtAmount.Text = amount+"";
 
-                sql = "select d.name, d.phone, d.date, d.addMoney from user u, deposit_record d where u.id = d.id";
+                sql = "select d.name, d.phone, d.date, d.addMoney from user u, deposit_record d where u.id = d.id and u.id='"+id+"'";
+
                 table = helper.FillTable(sql);
+                grdRecord.DefaultCellStyle.Font = new Font("SimSun", 12.5F, GraphicsUnit.Pixel);
                 grdRecord.DataSource = table;
+
+                sql = "select name, money, date, num from consume_record where id = '" + id + "'";
+                table = helper.FillTable(sql);
+                grVConsume.DefaultCellStyle.Font = new Font("SimSun", 12.5F, GraphicsUnit.Pixel);
+                grVConsume.DataSource = table;
             }
             else
             {
                 MessageBox.Show("无法读取用户信息？这是没有预料到的bug");
             }
-
-
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -120,9 +116,8 @@ namespace CourseDesign
             chosedPath = ofd.FileName;
             avatarName = System.IO.Path.GetFileName(chosedPath);
             extension = System.IO.Path.GetExtension(chosedPath);
-
-            pbAvatar.BackgroundImage = Image.FromFile(chosedPath);
-
+            if(chosedPath!="")
+                pbAvatar.BackgroundImage = Image.FromFile(chosedPath);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -133,7 +128,8 @@ namespace CourseDesign
                 avatarName = DateTime.Now.ToFileTime().ToString() + extension;
                 File.Copy(chosedPath, avatarPath + "\\" + avatarName);
             }
-            sql = "update user set name='"+txtName.Text.Trim()+"', phone='" + txtPhone.Text.Trim() + "', avatarName='" + avatarName + "' where id='" + id + "'";
+            name = txtName.Text.Trim();
+            sql = "update user set name='"+name+"', phone='" + txtPhone.Text.Trim() + "', avatarName='" + avatarName + "' where id='" + id + "'";
             long res = helper.Update(sql);
 
             if (res > 0)
@@ -144,18 +140,20 @@ namespace CourseDesign
                 //pbAvatar.BackgroundImageChanged += new EventHandler(pbAvatar_BackgroundImageChanged);
                 //点击保存后才能修改用户头像，妈的想了我好久
                 btnSave.Click += new EventHandler(pbAvatarBackgroundImageChanged);
-                ChangeAvatar.Invoke(avatarName);
+                ChangeAvatar.Invoke(avatarName, name);
             }
             else
             {
                 MessageBox.Show("信息修改失败！");
             }
+            txtName.ReadOnly = true;
+            txtPhone.ReadOnly = true;
         }
 
         private void pbAvatarBackgroundImageChanged(object sender, EventArgs e)
         {
             //图片被修改后就抛出该事件
-            ChangeAvatar.Invoke(avatarName);
+            ChangeAvatar.Invoke(avatarName, name);
         }
 
         private void btnDeposit_Click(object sender, EventArgs e)
@@ -181,10 +179,26 @@ namespace CourseDesign
                 res = helper.Update(sql);
                 if (res > 0)
                 {
-                    //加入行的值的顺序必须和一开始的一样
+                    //加入行的值的顺序必须和一开始的一样，这个千万别改了。
                     ((DataTable)grdRecord.DataSource).Rows.Add(name, phone, curTime, addMoney);
                 }
             }
+        }
+
+        private void btnD_Click(object sender, EventArgs e)
+        {
+            grpData.Visible = true;
+            grbConsume.Visible = false;
+            btnD.Enabled = false;
+            btnC.Enabled = true;
+        }
+
+        private void btnC_Click(object sender, EventArgs e)
+        {
+            grbConsume.Visible = true;
+            grpData.Visible = false;
+            btnD.Enabled = true;
+            btnC.Enabled = false;
         }
     }
 }
