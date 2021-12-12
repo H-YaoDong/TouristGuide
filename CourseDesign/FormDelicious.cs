@@ -15,6 +15,7 @@ namespace CourseDesign
         DBHelper helper = new DBHelper("mysql");
         string sql;
         DataTable table;
+        IDataReader reader;
         public FormDelicious()
         {
             InitializeComponent();
@@ -73,12 +74,20 @@ namespace CourseDesign
 
         private void mmuDel_Click(object sender, EventArgs e)
         {
-            if (grdData.SelectedRows.Count > 0) grdData.Rows.Remove(grdData.CurrentRow);
+            int idx = grdData.CurrentRow.Index;
+            float price = float.Parse(grdData.Rows[idx].Cells[3].Value.ToString());
+            int count = int.Parse((string)grdData.Rows[idx].Cells[2].Value);
+            float amount = float.Parse(txtAmount.Text.Trim());
+
+            grdData.Rows.Remove(grdData.CurrentRow);
+            amount -= price * count;
+            txtAmount.Text = amount + "";
         }
 
         private void mmuClear_Click(object sender, EventArgs e)
         {
             grdData.Rows.Clear();
+            txtAmount.Text = "0";
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -87,6 +96,58 @@ namespace CourseDesign
             txtName.Text = "";
             txtCount.Text = "1";
             
+        }
+
+        private void btnPay_Click(object sender, EventArgs e)
+        {
+
+            DialogResult dr = MessageBox.Show("请确认支付", "提示", MessageBoxButtons.OKCancel);
+            if (dr == DialogResult.OK)
+            {
+                string id = FormLogin.userID;
+                string sql;
+                sql = "select amount from user where id ='" + id + "'";
+                reader = helper.DataRead(sql);
+                float amount = 0;
+                if(reader!=null && reader.Read())
+                    amount = reader.GetFloat(0);
+                helper.DisConnection();
+                float spend = float.Parse(txtAmount.Text.Trim());
+                if (amount >= spend)
+                {
+                    int row = grdData.Rows.Count;
+                    int column = grdData.Columns.Count;
+                    string name = "";
+                    float money = 0;
+                    string date = "";
+
+                    for (int i = 0; i < row; i++)
+                    {
+                        name = grdData.Rows[i].Cells[1].Value.ToString();
+                        money = float.Parse(grdData.Rows[i].Cells[2].Value.ToString());
+                        date = DateTime.Now.ToString("yyyy-MM-dd-HH:mm");
+                        sql = "insert into consume_record values('"+id+"', '"+name+"', '"+money+"', '"+date+"', '"+txtCount.Value+"')";
+                        textBox1.Text = sql;
+
+                        helper.Update(sql);
+                        helper.DisConnection();
+                    }
+                    MessageBox.Show("支付成功！");
+                    sql = "update user set amount = '" + (amount - spend) + "' where id ='" +id+ "'";
+
+                    helper.Update(sql);
+                    helper.DisConnection();
+                }
+                else
+                {
+                    MessageBox.Show("余额不足，请充值！");
+                }
+
+
+
+
+            }
+
         }
     }
 }
