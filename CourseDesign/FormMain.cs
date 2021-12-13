@@ -138,7 +138,7 @@ namespace CourseDesign
 
         private void mmuDelicacies_Click(object sender, EventArgs e)
         {
-            frmDel = FormDelicious.getSingle();
+            frmDel = new FormDelicious();
             frmDel.MdiParent = this;
             frmDel.TopLevel = false;
             frmDel.Dock = DockStyle.Fill;
