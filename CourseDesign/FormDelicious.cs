@@ -16,6 +16,24 @@ namespace CourseDesign
         string sql;
         DataTable table;
         IDataReader reader;
+
+        string[] cities = { "南昌市", "景德镇市", "萍乡市", "九江市", "新余市", "鹰潭市", "赣州市", "吉安市", "宜春市", "抚州市", "上饶市" };
+
+        string[] country0 = { "南昌市", "新建县", "安义县", "进贤县"};
+        string[] country1 = { "浮梁县", "乐平市"};
+        string[] country2 = { "莲花", "上栗", "芦溪"};
+        string[] country3 = { "武宁", "修水", "永修", "德安", "星子", "都昌", "湖口", "彭泽", "瑞昌" };
+        string[] country4 = { "分宜县"};
+        string[] country5 = { "余江", "贵溪" };
+        string[] country6 = { "赣县", "南康", "信丰", "大余", "上犹", "崇义", "安远", "龙南", "定南", "全南", "宁都", "于都", "兴国", "会昌", "寻乌", "石城", "瑞金" };
+        string[] country7 = { "丰城", "樟树", "高安", "奉新", "万载", "上高", "宜丰", "靖安", "铜鼓" };
+        string[] country8 = { "德兴", "广丰", "玉山", "铅山", "横峰", "弋阳", "余干", "鄱阳", "万年", "婺源" };
+        string[] country9 = { "井冈山", "吉水", "峡江", "新干", "永丰", "泰和", "遂川", "万安", "安福", "永新" };
+        string[] country10 = { "南城", "黎川", "南丰", "崇仁", "乐安", "宜黄", "金溪", "资溪", "东乡", "广昌" };
+
+        List<string[]> countries = new List<string[]>();
+
+
         public FormDelicious()
         {
             InitializeComponent();
@@ -50,6 +68,15 @@ namespace CourseDesign
                     itmData.Group = lvFood.Groups[table.Rows[i][4].ToString()];
                 }
             }
+
+
+            countries.Add(country0); countries.Add(country1); countries.Add(country2); countries.Add(country3); countries.Add(country4); 
+            countries.Add(country5); countries.Add(country6); countries.Add(country7); countries.Add(country8); countries.Add(country9);
+            countries.Add(country10);
+
+            cbCounty.DataSource = cities;
+            cbCity.DataSource = country0;
+
         }
 
         private void lvFood_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -127,7 +154,6 @@ namespace CourseDesign
                         money = float.Parse(grdData.Rows[i].Cells[2].Value.ToString());
                         date = DateTime.Now.ToString("yyyy-MM-dd-HH:mm");
                         sql = "insert into consume_record values('"+id+"', '"+name+"', '"+money+"', '"+date+"', '"+txtCount.Value+"')";
-                        textBox1.Text = sql;
 
                         helper.Update(sql);
                         helper.DisConnection();
@@ -142,12 +168,15 @@ namespace CourseDesign
                 {
                     MessageBox.Show("余额不足，请充值！");
                 }
-
-
-
-
             }
+        }
 
+        private void cbCounty_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("country: "+cbCounty.SelectedIndex);
+            MessageBox.Show("city: "+cbCity.SelectedIndex);
+            
+           cbCity.DataSource = countries[cbCounty.SelectedIndex];
         }
     }
 }
