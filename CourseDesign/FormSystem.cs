@@ -78,6 +78,7 @@ namespace CourseDesign
             {
                 gbTip.Visible = true;
                 gbChange.Visible = false;
+                gbChangePwd.Visible = false;
             }
         }
 
@@ -97,7 +98,6 @@ namespace CourseDesign
                     MessageBox.Show("你的账号已从该星球消失，请使用另一个账号登陆！");
                     this.FormClosed += new FormClosedEventHandler(formclose);
                     this.Close();
-
                 }
 
             }
@@ -108,6 +108,52 @@ namespace CourseDesign
             gbTip.Visible = false;
             txtCopy.Text = "";
             gbChange.Visible = true;
+            gbChangePwd.Visible = true;
+        }
+
+        private void btnChangePwd_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("请确认是否要修改密码。", "提示", MessageBoxButtons.OKCancel);
+            if(dr == DialogResult.OK)
+            {
+                string p = pwd.Text.Trim();
+                string reP = rePwd.Text.Trim();
+                string sql = "select pwd from user where id = '" + id + "'";
+                DBHelper helper = new DBHelper("mysql");
+                IDataReader reader = helper.DataRead(sql);
+                string userPwd = "";
+                if (p != reP)
+                {
+                    MessageBox.Show("两次输入的密码不一致，请再次输入。");
+                    pwd.Focus();
+                }
+                else
+                {
+                    if (reader != null && reader.Read())
+                    {
+                        userPwd = reader.GetString(0);
+                    }
+                    helper.DisConnection();
+                    if (userPwd == p)
+                    {
+                        MessageBox.Show("修改的密码不能和原密码一样！");
+                        pwd.Text = "";
+                        rePwd.Text = "";
+                        pwd.Focus();
+                    }
+                    else
+                    {
+                        sql = "update user set pwd = '" + p + "' where id='" + id + "'";
+                        long res = helper.Update(sql);
+                        if (res > 0)
+                        {
+                            MessageBox.Show("密码修改成功，请重新登录！");
+                            this.FormClosed += new FormClosedEventHandler(formclose);
+                            this.Close();
+                        }
+                    }
+                }
+            }
         }
     }
 }

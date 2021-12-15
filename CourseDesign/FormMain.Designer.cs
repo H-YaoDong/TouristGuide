@@ -64,7 +64,7 @@ namespace CourseDesign
             this.lbUserName.AutoSize = true;
             this.lbUserName.BackColor = System.Drawing.Color.Transparent;
             this.lbUserName.Font = new System.Drawing.Font("SimHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbUserName.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.lbUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.lbUserName.Location = new System.Drawing.Point(36, 184);
             this.lbUserName.Name = "lbUserName";
             this.lbUserName.Size = new System.Drawing.Size(79, 21);
@@ -76,7 +76,7 @@ namespace CourseDesign
             this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel.Location = new System.Drawing.Point(150, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(828, 652);
+            this.panel.Size = new System.Drawing.Size(971, 585);
             this.panel.TabIndex = 9;
             // 
             // pbAvatar
@@ -120,7 +120,7 @@ namespace CourseDesign
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStrip1.Size = new System.Drawing.Size(150, 652);
+            this.toolStrip1.Size = new System.Drawing.Size(150, 585);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -240,7 +240,7 @@ namespace CourseDesign
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(978, 652);
+            this.ClientSize = new System.Drawing.Size(1121, 585);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.lbUserName);
             this.Controls.Add(this.pbAvatar);

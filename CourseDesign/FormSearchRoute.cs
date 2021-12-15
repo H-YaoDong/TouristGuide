@@ -142,7 +142,8 @@ namespace CourseDesign
             allDis[12, 46] = allDis[46, 12] = 0;
             //八一馆
             allDis[65, 11] = allDis[11, 65] = 0;
-
+            //青山路口
+            allDis[44, 67] = allDis[67, 44] = 0;
 
             /* Floyd算法
             for(int k=0; k<len; k++)

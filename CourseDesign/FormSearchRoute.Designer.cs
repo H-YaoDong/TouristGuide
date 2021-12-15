@@ -32,8 +32,6 @@ namespace CourseDesign
             this.cbEndStation = new System.Windows.Forms.ComboBox();
             this.cbStartStation = new System.Windows.Forms.ComboBox();
             this.cbEndRoute = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.cbStartRoute = new System.Windows.Forms.ComboBox();
             this.pbRoute = new System.Windows.Forms.PictureBox();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -45,8 +43,12 @@ namespace CourseDesign
             this.gbRoute = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbRoute)).BeginInit();
             this.gbRoute.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbEndStation
@@ -77,9 +79,9 @@ namespace CourseDesign
             "太子殿站",
             "奥体中心站",
             "瑶湖西站"});
-            this.cbEndStation.Location = new System.Drawing.Point(778, 310);
+            this.cbEndStation.Location = new System.Drawing.Point(109, 39);
             this.cbEndStation.Name = "cbEndStation";
-            this.cbEndStation.Size = new System.Drawing.Size(121, 20);
+            this.cbEndStation.Size = new System.Drawing.Size(121, 24);
             this.cbEndStation.TabIndex = 13;
             this.cbEndStation.Text = "双港站";
             this.cbEndStation.SelectedIndexChanged += new System.EventHandler(this.cbEndStation_SelectedIndexChanged);
@@ -87,7 +89,7 @@ namespace CourseDesign
             // cbStartStation
             // 
             this.cbStartStation.FormattingEnabled = true;
-            this.cbStartStation.ItemHeight = 12;
+            this.cbStartStation.ItemHeight = 16;
             this.cbStartStation.Items.AddRange(new object[] {
             "双港站",
             "孔目湖站",
@@ -113,9 +115,9 @@ namespace CourseDesign
             "太子殿站",
             "奥体中心站",
             "瑶湖西站"});
-            this.cbStartStation.Location = new System.Drawing.Point(778, 182);
+            this.cbStartStation.Location = new System.Drawing.Point(109, 44);
             this.cbStartStation.Name = "cbStartStation";
-            this.cbStartStation.Size = new System.Drawing.Size(121, 20);
+            this.cbStartStation.Size = new System.Drawing.Size(121, 24);
             this.cbStartStation.TabIndex = 12;
             this.cbStartStation.Text = "双港站";
             this.cbStartStation.SelectedIndexChanged += new System.EventHandler(this.cbStartStation_SelectedIndexChanged);
@@ -127,30 +129,12 @@ namespace CourseDesign
             "一号线",
             "二号线",
             "三号线"});
-            this.cbEndRoute.Location = new System.Drawing.Point(832, 273);
+            this.cbEndRoute.Location = new System.Drawing.Point(6, 39);
             this.cbEndRoute.Name = "cbEndRoute";
-            this.cbEndRoute.Size = new System.Drawing.Size(67, 20);
+            this.cbEndRoute.Size = new System.Drawing.Size(83, 24);
             this.cbEndRoute.TabIndex = 11;
             this.cbEndRoute.Text = "一号线";
             this.cbEndRoute.SelectedIndexChanged += new System.EventHandler(this.cbEndRoute_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(746, 273);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "终点站";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(746, 148);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "起点站";
             // 
             // cbStartRoute
             // 
@@ -159,9 +143,9 @@ namespace CourseDesign
             "一号线",
             "二号线",
             "三号线"});
-            this.cbStartRoute.Location = new System.Drawing.Point(832, 145);
+            this.cbStartRoute.Location = new System.Drawing.Point(6, 44);
             this.cbStartRoute.Name = "cbStartRoute";
-            this.cbStartRoute.Size = new System.Drawing.Size(67, 20);
+            this.cbStartRoute.Size = new System.Drawing.Size(83, 24);
             this.cbStartRoute.TabIndex = 8;
             this.cbStartRoute.Text = "一号线";
             this.cbStartRoute.SelectedIndexChanged += new System.EventHandler(this.cbStartRoute_SelectedIndexChanged);
@@ -271,11 +255,37 @@ namespace CourseDesign
             this.label5.TabIndex = 26;
             this.label5.Text = "路线查询";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cbStartStation);
+            this.groupBox1.Controls.Add(this.cbStartRoute);
+            this.groupBox1.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox1.Location = new System.Drawing.Point(726, 128);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(236, 103);
+            this.groupBox1.TabIndex = 28;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "起始站";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.cbEndRoute);
+            this.groupBox2.Controls.Add(this.cbEndStation);
+            this.groupBox2.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox2.Location = new System.Drawing.Point(726, 252);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(236, 102);
+            this.groupBox2.TabIndex = 29;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "终点站";
+            // 
             // FormSearchRoute
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 730);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.gbRoute);
@@ -284,18 +294,14 @@ namespace CourseDesign
             this.Controls.Add(this.btnBuy);
             this.Controls.Add(this.labelPrice);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.cbEndStation);
-            this.Controls.Add(this.cbStartStation);
-            this.Controls.Add(this.cbEndRoute);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.cbStartRoute);
             this.Controls.Add(this.pbRoute);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormSearchRoute";
             this.Load += new System.EventHandler(this.FormSearchRoute_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbRoute)).EndInit();
             this.gbRoute.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -306,8 +312,6 @@ namespace CourseDesign
         private System.Windows.Forms.ComboBox cbEndStation;
         private System.Windows.Forms.ComboBox cbStartStation;
         private System.Windows.Forms.ComboBox cbEndRoute;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbStartRoute;
         private System.Windows.Forms.PictureBox pbRoute;
         private System.Windows.Forms.Button btnSearch;
@@ -319,5 +323,7 @@ namespace CourseDesign
         private System.Windows.Forms.GroupBox gbRoute;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
