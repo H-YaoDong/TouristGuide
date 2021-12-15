@@ -172,10 +172,7 @@ namespace CourseDesign
         }
 
         private void cbCounty_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MessageBox.Show("country: "+cbCounty.SelectedIndex);
-            MessageBox.Show("city: "+cbCity.SelectedIndex);
-            
+        {   
            cbCity.DataSource = countries[cbCounty.SelectedIndex];
         }
     }

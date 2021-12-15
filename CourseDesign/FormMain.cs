@@ -85,7 +85,6 @@ namespace CourseDesign
         {
             frmLogin.ShowDialog();
             MyLoad();
-
         }
 
         private void pbAvatarBg_Paint(object sender, PaintEventArgs e)
@@ -113,7 +112,7 @@ namespace CourseDesign
         private void changeAvatar(string name, string uname)
         {
             //当第一次进入个人信息页面时，用户的头像从无到有，就会抛出自定义的事件
-            MessageBox.Show("为什么会执行这里啊？？");
+            //MessageBox.Show("为什么会执行这里啊？？");
             pbAvatar.BackgroundImage = Image.FromFile(FormRegister.avatarPath+"\\"+name);
             lbUserName.Text = uname;
         }
@@ -138,7 +137,7 @@ namespace CourseDesign
 
         private void mmuDelicacies_Click(object sender, EventArgs e)
         {
-            frmDel = FormDelicious.getSingle();
+            frmDel = new FormDelicious();
             frmDel.MdiParent = this;
             frmDel.TopLevel = false;
             frmDel.Dock = DockStyle.Fill;

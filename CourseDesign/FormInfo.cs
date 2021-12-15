@@ -69,20 +69,21 @@ namespace CourseDesign
             reader = helper.DataRead(sql);
             //获取保存头像的路径
             avatarPath = FormRegister.avatarPath;
-            if(reader!=null && reader.Read()){
+            if (reader != null && reader.Read())
+            {
                 name = reader.GetString(0);
                 phone = reader.GetString(1);
                 avatarName = reader.GetString(2);
                 amount = reader.GetFloat(3);
-                //好像在同一个类中用完一次helpgrdRecorder就要将其关闭
+                //在同一个类中用完一次helpgrdRecorder就要将其关闭
                 helper.DisConnection();
 
-                pbAvatar.BackgroundImage = Image.FromFile(avatarPath+"\\"+avatarName);
+                pbAvatar.BackgroundImage = Image.FromFile(avatarPath + "\\" + avatarName);
                 txtName.Text = name;
                 txtPhone.Text = phone;
-                txtAmount.Text = amount+"";
+                txtAmount.Text = amount + "";
 
-                sql = "select d.name, d.phone, d.date, d.addMoney from user u, deposit_record d where u.id = d.id and u.id='"+id+"'";
+                sql = "select d.name, d.phone, d.date, d.addMoney from user u, deposit_record d where u.id = d.id and u.id='" + id + "'";
 
                 table = helper.FillTable(sql);
                 grdRecord.DefaultCellStyle.Font = new Font("SimSun", 12.5F, GraphicsUnit.Pixel);
@@ -116,7 +117,7 @@ namespace CourseDesign
             chosedPath = ofd.FileName;
             avatarName = System.IO.Path.GetFileName(chosedPath);
             extension = System.IO.Path.GetExtension(chosedPath);
-            if(chosedPath!="")
+            if (chosedPath != "")
                 pbAvatar.BackgroundImage = Image.FromFile(chosedPath);
         }
 
@@ -129,7 +130,7 @@ namespace CourseDesign
                 File.Copy(chosedPath, avatarPath + "\\" + avatarName);
             }
             name = txtName.Text.Trim();
-            sql = "update user set name='"+name+"', phone='" + txtPhone.Text.Trim() + "', avatarName='" + avatarName + "' where id='" + id + "'";
+            sql = "update user set name='" + name + "', phone='" + txtPhone.Text.Trim() + "', avatarName='" + avatarName + "' where id='" + id + "'";
             long res = helper.Update(sql);
 
             if (res > 0)
@@ -150,6 +151,7 @@ namespace CourseDesign
             txtPhone.ReadOnly = true;
         }
 
+
         private void pbAvatarBackgroundImageChanged(object sender, EventArgs e)
         {
             //图片被修改后就抛出该事件
@@ -162,11 +164,10 @@ namespace CourseDesign
             sql = "update user set amount = " + (amount + addMoney) + " where id='" + id + "'";
             long res = helper.Update(sql);
             helper.DisConnection();
-            MessageBox.Show(sql);
             if (res > 0)
             {
                 amount += addMoney;
-                MessageBox.Show("充值成功！当前余额为："+amount);
+                MessageBox.Show("充值成功！当前余额为：" + amount);
                 txtAmount.Text = amount + "";
                 txtDeposit.Text = "充值金额";
                 txtDeposit.ForeColor = Color.LightGray;
@@ -174,8 +175,7 @@ namespace CourseDesign
                 dt = System.DateTime.Now;
                 curTime = dt.ToString("yyyy-MM-dd-HH:mm");
 
-                sql = "insert into deposit_record values('"+id+"', '"+name+"', '"+phone+"', '"+curTime+"', '"+addMoney+"')";
-                MessageBox.Show(sql);
+                sql = "insert into deposit_record values('" + id + "', '" + name + "', '" + phone + "', '" + curTime + "', '" + addMoney + "')";
                 res = helper.Update(sql);
                 if (res > 0)
                 {
@@ -202,3 +202,4 @@ namespace CourseDesign
         }
     }
 }
+       

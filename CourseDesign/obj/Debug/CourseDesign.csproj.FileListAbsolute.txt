@@ -23,3 +23,8 @@ C:\Users\HYaoDong\Desktop\CourseDesign\CourseDesign\bin\Debug\K4os.Hash.xxHash.d
 C:\Users\HYaoDong\Desktop\CourseDesign\CourseDesign\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\HYaoDong\Desktop\CourseDesign\CourseDesign\obj\Debug\CourseDesign.FormMain.resources
 C:\Users\HYaoDong\Desktop\CourseDesign\CourseDesign\obj\Debug\CourseDesign.FormInfo.resources
+C:\Users\HYaoDong\Desktop\CourseDesign\CourseDesign\obj\Debug\CourseDesign.FormIndex.resources
+C:\Users\HYaoDong\Desktop\CourseDesign\CourseDesign\obj\Debug\CourseDesign.FormSearchRoute.resources
+C:\Users\HYaoDong\Desktop\CourseDesign\CourseDesign\obj\Debug\CourseDesign.FormDelicious.resources
+C:\Users\HYaoDong\Desktop\CourseDesign\CourseDesign\obj\Debug\CourseDesign.FormSystem.resources
+C:\Users\HYaoDong\Desktop\CourseDesign\CourseDesign\obj\Debug\CourseDesign.FormView.resources

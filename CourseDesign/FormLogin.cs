@@ -20,6 +20,7 @@ namespace CourseDesign
         IDataReader reader;
         bool success = false;
         public static string userPhone;
+        public static string userID;
         public FormLogin()
         {
             InitializeComponent();
@@ -51,7 +52,7 @@ namespace CourseDesign
         {
             string phone = txtCode.Text.Trim();
             string pwd = txtPassword.Text.Trim();
-            sql = "select name, phone, pwd from user where phone = '" + phone + "'";
+            sql = "select name, phone, pwd, id from user where phone = '" + phone + "'";
             reader = helper.DataRead(sql);
             if(reader!=null && reader.Read())
             {
@@ -60,12 +61,18 @@ namespace CourseDesign
                     success = true;
                     userName = reader.GetString(0);
                     userPhone = phone;
+                    userID = reader.GetString(3);
+                    
                     Close();
+                }
+                else
+                {
+                    MessageBox.Show("登陆失败，密码错误！");
                 }
             }
             else
             {
-                MessageBox.Show("登录失败，请输入正确信息！");
+                MessageBox.Show("当前登录的用户不存在！");
                 txtCode.Focus();
             }
             reader.Close();

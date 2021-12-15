@@ -74,7 +74,7 @@ namespace CourseDesign
                         File.Copy(chosedPath, avatarPath + "\\" + avatarName);
                     }
 
-                    sql = "insert into user values ('" + name + "', '" + phone + "',  '" + pwd + "', '"+ avatarName + "')";
+                    sql = "insert into user(name, phone, pwd, avatarName) values ('" + name + "', '" + phone + "',  '" + pwd + "', '"+ avatarName + "')";
                     long res = helper.Update(sql);
                     if (res > 0)
                     {
@@ -84,12 +84,9 @@ namespace CourseDesign
                         txtPassword.Text = "";
                         txtRePassword.Text = "";
                         avatar.BackgroundImage = null;
-                        
                     }
                 }
-
             }
-
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -108,9 +105,9 @@ namespace CourseDesign
             chosedPath = ofd.FileName;
             avatarName = System.IO.Path.GetFileName(chosedPath);
             extension = System.IO.Path.GetExtension(chosedPath);
-
-            //在注册页面设置头像
-            avatar.BackgroundImage = Image.FromFile(chosedPath);
+            //在注册页面设置头像，只有当用户选择了头像才能把头像加载到头像的位置上
+            if(chosedPath!="")
+                avatar.BackgroundImage = Image.FromFile(chosedPath);
 
         }
     }

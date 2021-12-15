@@ -55,6 +55,13 @@ namespace CourseDesign
                 FormLogin.userID = changeID;
                 MessageBox.Show("切换成功！");
             }
+            else
+            {
+                MessageBox.Show("输入有误，请重新输入！");
+                txtCode.Focus();
+                txtCode.Text = "";
+                txtPassword.Text = "";
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -85,7 +92,6 @@ namespace CourseDesign
                 helper.DisConnection();
                 sql = "delete from deposit_record where id ='" + FormLogin.userID + "'";
                 long res1 = helper.Update(sql);
-                MessageBox.Show("res: "+res+"\nres1: "+res1);
                 if (res >= 0 && res1 >= 0)
                 {
                     MessageBox.Show("你的账号已从该星球消失，请使用另一个账号登陆！");

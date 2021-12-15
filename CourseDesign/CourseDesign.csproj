@@ -52,6 +52,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBHelper.cs" />
+    <Compile Include="FormDelicious.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDelicious.Designer.cs">
+      <DependentUpon>FormDelicious.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSearchRoute.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSearchRoute.Designer.cs">
+      <DependentUpon>FormSearchRoute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormIndex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormIndex.Designer.cs">
+      <DependentUpon>FormIndex.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,8 +94,29 @@
     <Compile Include="FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSystem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSystem.Designer.cs">
+      <DependentUpon>FormSystem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormView.Designer.cs">
+      <DependentUpon>FormView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormDelicious.resx">
+      <DependentUpon>FormDelicious.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSearchRoute.resx">
+      <DependentUpon>FormSearchRoute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormIndex.resx">
+      <DependentUpon>FormIndex.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormInfo.resx">
       <DependentUpon>FormInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,6 +128,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRegister.resx">
       <DependentUpon>FormRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSystem.resx">
+      <DependentUpon>FormSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormView.resx">
+      <DependentUpon>FormView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -118,6 +163,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\Route\route.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\view\1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\view\3.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
