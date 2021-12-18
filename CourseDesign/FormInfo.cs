@@ -200,6 +200,11 @@ namespace CourseDesign
             btnD.Enabled = true;
             btnC.Enabled = false;
         }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
        

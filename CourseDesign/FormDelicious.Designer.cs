@@ -183,9 +183,9 @@ namespace CourseDesign
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Location = new System.Drawing.Point(594, 131);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(289, 142);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
@@ -194,7 +194,7 @@ namespace CourseDesign
             // 
             this.btnOK.Font = new System.Drawing.Font("SimSun", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnOK.Location = new System.Drawing.Point(104, 91);
-            this.btnOK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(76, 28);
             this.btnOK.TabIndex = 6;
@@ -205,7 +205,7 @@ namespace CourseDesign
             // txtPrice
             // 
             this.txtPrice.Location = new System.Drawing.Point(212, 91);
-            this.txtPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPrice.Margin = new System.Windows.Forms.Padding(2);
             this.txtPrice.Multiline = true;
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(62, 27);
@@ -215,7 +215,7 @@ namespace CourseDesign
             // txtID
             // 
             this.txtID.Location = new System.Drawing.Point(18, 91);
-            this.txtID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtID.Margin = new System.Windows.Forms.Padding(2);
             this.txtID.Multiline = true;
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(62, 27);
@@ -226,7 +226,7 @@ namespace CourseDesign
             // 
             this.txtCount.Font = new System.Drawing.Font("SimSun", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtCount.Location = new System.Drawing.Point(88, 56);
-            this.txtCount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCount.Margin = new System.Windows.Forms.Padding(2);
             this.txtCount.Name = "txtCount";
             this.txtCount.Size = new System.Drawing.Size(133, 29);
             this.txtCount.TabIndex = 3;
@@ -239,7 +239,7 @@ namespace CourseDesign
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(88, 17);
-            this.txtName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtName.Margin = new System.Windows.Forms.Padding(2);
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(135, 27);
@@ -279,7 +279,7 @@ namespace CourseDesign
             this.count});
             this.grdData.ContextMenuStrip = this.contextMenuStrip1;
             this.grdData.Location = new System.Drawing.Point(594, 289);
-            this.grdData.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grdData.Margin = new System.Windows.Forms.Padding(2);
             this.grdData.Name = "grdData";
             this.grdData.RowHeadersWidth = 82;
             this.grdData.RowTemplate.Height = 37;
@@ -322,19 +322,20 @@ namespace CourseDesign
             this.mmuDel,
             this.mmuClear});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(101, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // mmuDel
             // 
             this.mmuDel.Name = "mmuDel";
-            this.mmuDel.Size = new System.Drawing.Size(100, 22);
+            this.mmuDel.Size = new System.Drawing.Size(180, 22);
             this.mmuDel.Text = "删除";
             this.mmuDel.Click += new System.EventHandler(this.mmuDel_Click);
             // 
             // mmuClear
             // 
             this.mmuClear.Name = "mmuClear";
-            this.mmuClear.Size = new System.Drawing.Size(100, 22);
+            this.mmuClear.Size = new System.Drawing.Size(180, 22);
             this.mmuClear.Text = "清空";
             this.mmuClear.Click += new System.EventHandler(this.mmuClear_Click);
             // 
@@ -342,7 +343,7 @@ namespace CourseDesign
             // 
             this.btnCancel.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnCancel.Location = new System.Drawing.Point(828, 594);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(60, 28);
             this.btnCancel.TabIndex = 12;
@@ -354,7 +355,7 @@ namespace CourseDesign
             // 
             this.btnPay.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnPay.Location = new System.Drawing.Point(752, 594);
-            this.btnPay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPay.Margin = new System.Windows.Forms.Padding(2);
             this.btnPay.Name = "btnPay";
             this.btnPay.Size = new System.Drawing.Size(60, 28);
             this.btnPay.TabIndex = 9;
@@ -367,7 +368,7 @@ namespace CourseDesign
             this.txtAmount.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtAmount.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.txtAmount.Location = new System.Drawing.Point(676, 600);
-            this.txtAmount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtAmount.Margin = new System.Windows.Forms.Padding(2);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(56, 21);
             this.txtAmount.TabIndex = 10;
@@ -388,7 +389,7 @@ namespace CourseDesign
             // 
             this.cbCity.FormattingEnabled = true;
             this.cbCity.Location = new System.Drawing.Point(212, 22);
-            this.cbCity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbCity.Margin = new System.Windows.Forms.Padding(2);
             this.cbCity.Name = "cbCity";
             this.cbCity.Size = new System.Drawing.Size(74, 22);
             this.cbCity.TabIndex = 13;
@@ -397,7 +398,7 @@ namespace CourseDesign
             // 
             this.cbCounty.FormattingEnabled = true;
             this.cbCounty.Location = new System.Drawing.Point(66, 22);
-            this.cbCounty.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbCounty.Margin = new System.Windows.Forms.Padding(2);
             this.cbCounty.Name = "cbCounty";
             this.cbCounty.Size = new System.Drawing.Size(72, 22);
             this.cbCounty.TabIndex = 14;
@@ -409,9 +410,9 @@ namespace CourseDesign
             this.groupBox3.Controls.Add(this.cbCounty);
             this.groupBox3.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox3.Location = new System.Drawing.Point(594, 492);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox3.Size = new System.Drawing.Size(332, 50);
             this.groupBox3.TabIndex = 15;
             this.groupBox3.TabStop = false;

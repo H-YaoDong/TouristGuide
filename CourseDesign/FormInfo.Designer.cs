@@ -141,6 +141,7 @@ namespace CourseDesign
             this.txtName.ReadOnly = true;
             this.txtName.Size = new System.Drawing.Size(183, 26);
             this.txtName.TabIndex = 1;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // txtDeposit
             // 
@@ -222,7 +223,7 @@ namespace CourseDesign
             // btnUpdate
             // 
             this.btnUpdate.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnUpdate.Location = new System.Drawing.Point(101, 286);
+            this.btnUpdate.Location = new System.Drawing.Point(101, 285);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(91, 29);
             this.btnUpdate.TabIndex = 4;

@@ -56,6 +56,13 @@ namespace CourseDesign
             if (avatar.BackgroundImage == null)
             {
                 MessageBox.Show("请设置一个用户头像！");
+            }else if (pwd.Length < 7)
+            {
+                MessageBox.Show("密码需大于7位");
+            }
+            else if (pwd=="")
+            {
+                MessageBox.Show("密码不能为空！");
             }
             else
             {
@@ -83,6 +90,8 @@ namespace CourseDesign
                         txtName.Text = "";
                         txtPassword.Text = "";
                         txtRePassword.Text = "";
+;                        string s = "sf";
+                        s.Substring(s.Length - 2);
                         avatar.BackgroundImage = null;
                     }
                 }

@@ -175,5 +175,10 @@ namespace CourseDesign
         {   
            cbCity.DataSource = countries[cbCounty.SelectedIndex];
         }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
     }
 }
