@@ -160,6 +160,7 @@ namespace CourseDesign
         }
 
 
+        //使用dijstra算法计算两点间的最短路径
         private double dijstra(int startLine, int startStation, int endLine, int endStation)
         {
             double distance = 0;
